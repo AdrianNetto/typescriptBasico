@@ -1,6 +1,5 @@
 var i = 1;
-console.log(i);
-console.log(typeof i);
+var tipoi = typeof i;
 var iString = i.toString();
-console.log(iString);
-console.log(typeof iString);
+var tipoiString = typeof iString;
+console.log("O valor num\u00E9rico ".concat(i, " do tipo ").concat(tipoi, " foi convertida com sucesso para ").concat(tipoiString, "."));
