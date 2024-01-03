@@ -26,3 +26,4 @@ const pant:Product = {
   price: 29.99,
   isAvailable: false
 }
+
