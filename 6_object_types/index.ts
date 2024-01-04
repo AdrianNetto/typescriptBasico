@@ -40,18 +40,18 @@ interface User {
 function showUserDetails(user: User) {
   if (user.role) {
     console.log(
-      `O user tem um email de ${user.email} e um cargo de ${user.role}`
+      `O user ${user.nome} tem um email de ${user.email} e um cargo de ${user.role}`
     );
   }
-  console.log(`O user tem um email de ${user.email}`);
+  console.log(`O user ${user.nome} tem um email de ${user.email}`);
 }
 
-const usuario = {
+const usuario: User = {
   nome: "Adrian",
   email: "user.test@gmail.com",
 };
 
-const usuarioRole = {
+const usuarioRole: User = {
   nome: "João",
   email: "user.test@gmail.com",
   role: "adm",
@@ -59,3 +59,36 @@ const usuarioRole = {
 
 showUserDetails(usuario);
 showUserDetails(usuarioRole);
+
+//readonly
+
+interface Car {
+  brand: string;
+  readonly wheels: number;
+}
+
+const chevette: Car = {
+  brand: "Chevrolet",
+  wheels: 4,
+};
+
+console.log(chevette);
+
+// index signature
+
+interface CoordObject {
+  [index: string]: number;
+}
+
+let coords: CoordObject = {
+  x: 10,
+};
+
+console.log(coords);
+
+coords.y = 15;
+
+console.log(coords);
+
+// herança de interfaces
+
