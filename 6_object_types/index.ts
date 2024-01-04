@@ -90,5 +90,99 @@ coords.y = 15;
 
 console.log(coords);
 
-// herança de interfaces
+// herança de intefaces
 
+interface Human {
+  name: string;
+  age: number;
+}
+
+interface SuperHuman extends Human {
+  superpowers: string[];
+}
+
+const adrian: Human = {
+  name: "Adrian",
+  age: 18,
+};
+
+console.log(adrian);
+
+const giyu: SuperHuman = {
+  name: "giyu",
+  age: 21,
+  superpowers: ["Water Breath", "Super Speed"],
+};
+
+console.log(giyu);
+console.log(giyu.superpowers[0]);
+
+// intersection types
+
+interface Character {
+  name: string;
+}
+
+interface Gun {
+  type: string;
+  caliber: number;
+}
+
+type HumanWithGun = Character & Gun;
+
+const arnold: HumanWithGun = {
+  name: "Arnold",
+  type: "Shotgun",
+  caliber: 12,
+};
+
+console.log(arnold);
+console.log(arnold.type, arnold.caliber);
+
+// readonly array
+
+let myArray: ReadonlyArray<string> = ["Maça", "Laranja", "Banana "];
+
+// myArray[3] = "Mamão";
+
+console.log(myArray);
+
+myArray.forEach((item) => {
+  console.log("Fruta: " + item);
+});
+
+myArray = myArray.map((item) => {
+  return `Fruta: ${item}`;
+});
+
+console.log(myArray);
+
+// tuplas
+
+type fiveNumbers = [number, number, number, number, number];
+
+const myNumberArray: fiveNumbers = [1, 2, 3, 4, 5];
+
+console.log(myNumberArray);
+console.log(myNumberArray[3]);
+
+type nameAndAge = [string, number];
+
+const anotherUser: nameAndAge = ["Adrian", 18];
+
+console.log(anotherUser);
+console.log(anotherUser[0]);
+console.log(anotherUser[1]);
+
+anotherUser[0] = "João";
+
+console.log(anotherUser);
+
+// tuplas com readonly
+
+function showNumbers(numbers: readonly [number, number]) {
+  console.log(numbers[0]);
+  console.log(numbers[1]);
+}
+
+showNumbers([1, 2])
