@@ -101,8 +101,46 @@ const userName3: x = "Tiago";
 // indexed access types
 
 type Truck = {
-  km: number
-  kg: number
-  descripion: string
+  km: number;
+  kg: number;
+  description: string;
+};
+
+type Km = Truck["km"];
+
+const newTruck: Truck = {
+  km: 10000,
+  kg: 10000,
+  description: "Volvo FH12 500cv na prancha com piso de madeira",
+};
+
+function showKm(km: Km) {
+  console.log(`O veículo tem a kilometragem de: ${km}`);
 }
+
+showKm(newTruck.km);
+
+const newCar = {
+  km: 5000,
+  kg: 1000,
+};
+
+showKm(newCar.km);
+
+// conditional types
+
+interface A {}
+
+interface B extends A {}
+
+interface Teste {
+  showName(): string;
+}
+
+type myType = B extends A ? number : string;
+
+const someVar: myType = 5;
+// const someVar2: myType = "teste"
+
+type myTypeB = Teste extends { showNumber(): number } ? string : boolean;
 
