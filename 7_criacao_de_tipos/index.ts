@@ -65,3 +65,44 @@ const server = {
 
 console.log(getSomeKey(server, "ram"));
 console.log(getSomeKey(server, "hd"));
+
+// Keyof type operator
+
+type Character = {
+  name: string;
+  age: number;
+  hasDriveLicense: boolean;
+};
+
+type C = keyof Character;
+
+function showCharName(obj: Character, name: C): string {
+  return `${obj[name]}`;
+}
+
+const myChar: Character = {
+  name: "Adrian",
+  age: 18,
+  hasDriveLicense: false,
+};
+
+console.log(showCharName(myChar, "name"));
+
+// Typeof type operator
+
+const userName: string = "Adrian";
+
+const userName2: typeof userName = "João";
+
+type x = typeof userName;
+
+const userName3: x = "Tiago";
+
+// indexed access types
+
+type Truck = {
+  km: number
+  kg: number
+  descripion: string
+}
+
