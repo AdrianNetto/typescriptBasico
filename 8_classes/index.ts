@@ -110,3 +110,88 @@ const realGuard = new Guard("Guarda Real");
 
 console.log(realGuard.name);
 realGuard.recognize();
+
+// this em classes
+
+class Truck {
+  model;
+  hp;
+
+  constructor(model: string, hp: number) {
+    this.model = model;
+    this.hp = hp;
+  }
+
+  showDetails() {
+    console.log(
+      `Caminhão do modelo ${this.model} com ${this.hp} cavalos de potência`
+    );
+  }
+}
+
+const myTruck = new Truck("Scania 113h", 360);
+
+myTruck.showDetails();
+
+// getters
+
+class Person {
+  name;
+  surname;
+
+  constructor(name: string, surname: string) {
+    this.name = name;
+    this.surname = surname;
+  }
+
+  get fullname() {
+    return this.name + " " + this.surname;
+  }
+}
+
+const user = new Person("Adrian", "Netto");
+
+console.log(user);
+
+console.log(user.fullname);
+
+// setter
+
+class Coords {
+  x!: number;
+  y!: number;
+
+  set fillX(x: number) {
+    if (x === 0) {
+      return;
+    }
+
+    this.x = x;
+
+    console.log("X inserido com sucesso");
+  }
+
+  set fillY(y: number) {
+    if (y === 0) {
+      return;
+    }
+  
+    this.y = y;
+  
+    console.log("Y inserido com sucesso");
+  }
+
+  get getCoords() {
+    return `X: ${this.x} e Y: ${this.y} inseridos com sucesso`
+  }
+}
+
+const myCoords = new Coords();
+
+myCoords.fillX = 15
+myCoords.fillY = 50
+
+console.log(myCoords)
+console.log(myCoords.getCoords)
+
+
