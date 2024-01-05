@@ -16,15 +16,97 @@ console.log(adrian);
 // constructor
 
 class NewUser {
-  name
-  age
+  name;
+  age;
 
   constructor(name: string, age: number) {
-    this.name = name
-    this.age = age
+    this.name = name;
+    this.age = age;
   }
 }
 
-const joao = new NewUser("João", 22)
+const joao = new NewUser("João", 22);
 
-console.log(joao)
+console.log(joao);
+
+// readonly em classes
+
+class Car {
+  name;
+  readonly wheels = 4;
+
+  constructor(name: string) {
+    this.name = name;
+  }
+}
+
+const chevette = new Car("Chevette");
+
+console.log(chevette);
+console.log(chevette.wheels);
+
+chevette.name = "Chevette turbo";
+console.log(chevette);
+
+// herança e super
+
+class Machine {
+  name;
+
+  constructor(name: string) {
+    this.name = name;
+  }
+}
+
+const trator = new Machine("Valtra");
+
+class KillerMachine extends Machine {
+  guns;
+
+  constructor(name: string, guns: number) {
+    super(name);
+    this.guns = guns;
+  }
+}
+
+const xWing = new KillerMachine("X Wing", 4);
+
+console.log(trator);
+console.log(xWing);
+
+// Métodos
+
+class Dwarf {
+  name;
+
+  constructor(name: string) {
+    this.name = name;
+  }
+
+  greeting() {
+    console.log("Hey, you, Finally awake!");
+  }
+}
+
+const dort = new Dwarf("Dort");
+
+console.log(dort.name);
+
+dort.greeting();
+
+class Guard {
+  name;
+
+  constructor(name: string) {
+    this.name = name;
+  }
+
+  recognize() {
+    console.log("Wait... I know you");
+  }
+}
+
+const realGuard = new Guard("Guarda Real");
+
+console.log(realGuard.name);
+realGuard.recognize();
