@@ -317,3 +317,122 @@ pObj.showPrivateMethod();
 //     this.privateMethod()
 //   }
 // }
+
+// static members
+
+class StaticMembers {
+  static prop = "teste static";
+
+  static staticMethod() {
+    console.log("Este é um método estático");
+  }
+}
+
+console.log(StaticMembers.prop);
+
+StaticMembers.staticMethod();
+
+// generic class
+
+class Item<T, U> {
+  first;
+  second;
+
+  constructor(first: T, second: U) {
+    this.first = first;
+    this.second = second;
+  }
+
+  get showFirst() {
+    return `O first é: ${this.first}`;
+  }
+}
+
+const newItem = new Item("caixa", "surpresa");
+
+console.log(newItem);
+
+console.log(newItem.showFirst);
+console.log(typeof newItem.showFirst);
+
+const secondItem = new Item(12, true);
+
+console.log(secondItem.showFirst);
+console.log(typeof secondItem.first);
+
+// parameters properties
+
+class ParameterProperties {
+  constructor(public name: string, private qty: number, private price: number) {
+    this.name = name;
+    this.qty = qty;
+    this.price = price;
+  }
+
+  get showQTY() {
+    return this.qty;
+  }
+  get showPrice() {
+    return this.price;
+  }
+}
+
+const newShirt = new ParameterProperties("Camisa", 5, 19.99);
+
+console.log(newShirt.name);
+console.log(newShirt.showQTY);
+console.log(newShirt.showPrice);
+
+// class expressions
+
+const myClass = class<T> {
+  name;
+
+  constructor(name: T) {
+    this.name = name;
+  }
+};
+
+const pessoa = new myClass("Adrian");
+
+console.log(pessoa);
+console.log(pessoa.name);
+
+// abstract class
+
+abstract class AbstractClass {
+  abstract showName(): void;
+}
+
+class AbstractExample extends AbstractClass {
+  name: string;
+
+  constructor(name: string) {
+    super();
+    this.name = name;
+  }
+
+  showName() {
+    console.log(`O nome é ${this.name}`);
+  }
+}
+
+const absEx = new AbstractExample("Adrian");
+
+console.log(absEx);
+
+absEx.showName();
+
+// relação entre classes
+
+class Dog {
+  name!: string;
+}
+
+class Cat {
+  name!: string;
+}
+
+const doguinho: Dog = new Cat();
+
+console.log(doguinho);
