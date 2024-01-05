@@ -175,23 +175,145 @@ class Coords {
     if (y === 0) {
       return;
     }
-  
+
     this.y = y;
-  
+
     console.log("Y inserido com sucesso");
   }
 
   get getCoords() {
-    return `X: ${this.x} e Y: ${this.y} inseridos com sucesso`
+    return `X: ${this.x} e Y: ${this.y} inseridos com sucesso`;
   }
 }
 
 const myCoords = new Coords();
 
-myCoords.fillX = 15
-myCoords.fillY = 50
+myCoords.fillX = 15;
+myCoords.fillY = 50;
 
-console.log(myCoords)
-console.log(myCoords.getCoords)
+console.log(myCoords);
+console.log(myCoords.getCoords);
 
+// herança de interfaces -- implements
 
+interface showTitle {
+  itemTiltle(): string;
+}
+
+class blogPost implements showTitle {
+  title;
+
+  constructor(title: string) {
+    this.title = title;
+  }
+
+  itemTiltle() {
+    return `O título do post é: ${this.title}`;
+  }
+}
+
+const myPost = new blogPost("Hello World!");
+
+console.log(myPost.itemTiltle());
+
+class Test implements showTitle {
+  title;
+
+  constructor(title: string) {
+    this.title = title;
+  }
+
+  itemTiltle() {
+    return `O título é: ${this.title}`;
+  }
+}
+
+// Override
+
+class Base {
+  someMethod() {
+    console.log("alguma coisa");
+  }
+}
+
+class Nova extends Base {
+  someMethod() {
+    console.log("testando outra coisa");
+  }
+}
+
+const myObject = new Nova();
+
+myObject.someMethod();
+
+//visibilidade -> public
+
+class C {
+  public x = 10;
+}
+
+class D extends C {}
+
+const cInstance = new C();
+
+console.log(cInstance.x);
+
+const dInstance = new D();
+
+console.log(dInstance.x);
+
+// protected
+
+class E {
+  protected x = 10;
+
+  protected protectedMethod() {
+    console.log("Este método é protegido");
+  }
+}
+
+class F extends E {
+  showX() {
+    console.log("X: " + this.x);
+  }
+
+  showProtectedMethod() {
+    this.protectedMethod();
+  }
+}
+
+const fInstance = new F();
+fInstance.showX;
+
+fInstance.showProtectedMethod();
+
+// private
+
+class PrivateClass {
+  private name = "Private";
+
+  showName() {
+    return this.name;
+  }
+
+  private privateMethod() {
+    console.log("metodo privado");
+  }
+
+  showPrivateMethod() {
+    this.privateMethod();
+  }
+}
+
+const pObj = new PrivateClass();
+
+// console.log(pObj.showName)
+
+console.log(pObj.showName());
+pObj.showPrivateMethod();
+
+// class TestingPrivate extends PrivateClass {
+//   myMethod() {
+//     this.privateMethod()
+//   }
+// }
