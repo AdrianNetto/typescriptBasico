@@ -155,7 +155,7 @@ console.log(user);
 
 console.log(user.fullname);
 
-// setter
+// setters
 
 class Coords {
   x!: number;
