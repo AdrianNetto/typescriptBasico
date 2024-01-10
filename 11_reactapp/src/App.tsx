@@ -15,7 +15,7 @@ import Context from "./components/Context";
 
 type textOrNull = string | null;
 
-type fixed = "isso" | "aquilo";
+// type fixed = "isso" | "aquilo";
 
 // context
 
