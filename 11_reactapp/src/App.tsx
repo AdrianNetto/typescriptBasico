@@ -9,8 +9,6 @@ import Desctucturing, { Category } from "./components/Desctucturing";
 // useState
 
 import State from "./components/State";
-import { type } from "os";
-import { create } from "domain";
 import Context from "./components/Context";
 
 // type
