@@ -1,14 +1,33 @@
-import React from "react";
+import React, { createContext } from "react";
 
 // importação de componentes
 
 import FirstComponent from "./components/FirstComponent";
 import SecondComponent from "./components/SecondComponent";
-import Desctucturing from "./components/Desctucturing";
+import Desctucturing, { Category } from "./components/Desctucturing";
 
 // useState
 
 import State from "./components/State";
+import { type } from "os";
+import { create } from "domain";
+import Context from "./components/Context";
+
+// type
+
+type textOrNull = string | null;
+
+type fixed = "isso" | "aquilo";
+
+// context
+
+interface IAppContext {
+  language: string;
+  framework: string;
+  projects: number;
+}
+
+export const AppContext = createContext<IAppContext | null>(null);
 
 function App() {
   //variaveis
@@ -23,9 +42,27 @@ function App() {
     return `Olá, ${name}`;
   };
 
+  // types
+
+  const mytext: textOrNull = "Tem um texto aqui";
+  let mySecondText: textOrNull = null;
+
+  // mySecondText = "opa";
+
+  // const testFixed: fixed = "isso";
+
+  // context
+
+  const contextValue: IAppContext = {
+    language: "JavaScript",
+    framework: "Express",
+    projects: 5,
+  };
+
   // desestruturando props
 
   return (
+    <AppContext.Provider value={contextValue}>
     <div className="App">
       <h1>test</h1>
       <h2>nome: {name}</h2>
@@ -39,15 +76,21 @@ function App() {
         content="New Post"
         commentsQty={10}
         tags={["ts", "js"]}
+        category={Category.TS}
       />
-            <Desctucturing
+      <Desctucturing
         title="Segundo post"
         content="Content"
         commentsQty={5}
-        tags={["java"]}
+        tags={["ruby"]}
+        category={Category.RB}
       />
       <State />
+      {mytext && <p>Tem texto na variável</p>}
+      {mySecondText && <p>Tem texto na variável</p>}
+      <Context />
     </div>
+    </AppContext.Provider>
   );
 }
 
