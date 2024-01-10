@@ -1,5 +1,15 @@
 import React from "react";
 
+// importação de componentes
+
+import FirstComponent from "./components/FirstComponent";
+import SecondComponent from "./components/SecondComponent";
+import Desctucturing from "./components/Desctucturing";
+
+// useState
+
+import State from "./components/State";
+
 function App() {
   //variaveis
 
@@ -10,8 +20,10 @@ function App() {
   // funções
 
   const userGreeting = (name: string): string => {
-    return `Olá, ${name}`
-  }
+    return `Olá, ${name}`;
+  };
+
+  // desestruturando props
 
   return (
     <div className="App">
@@ -20,6 +32,21 @@ function App() {
       <h2>idade: {age}</h2>
       {isWorking && <p>Está trabalhando!</p>}
       <h3>{userGreeting(name)}</h3>
+      <FirstComponent />
+      <SecondComponent name="Segundo componente" />
+      <Desctucturing
+        title="Primeiro post"
+        content="New Post"
+        commentsQty={10}
+        tags={["ts", "js"]}
+      />
+            <Desctucturing
+        title="Segundo post"
+        content="Content"
+        commentsQty={5}
+        tags={["java"]}
+      />
+      <State />
     </div>
   );
 }
