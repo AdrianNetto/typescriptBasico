@@ -2,8 +2,7 @@
 // console.log("express + TS");
 
 // init express
-
-import express, { Request, Response } from "express";
+import express, { NextFunction, Request, Response } from "express";
 
 const app = express();
 
@@ -12,6 +11,15 @@ const port = 3000;
 const url = "http://localhost:3000/";
 
 app.use(express.json());
+
+// middlewares para todas as rotas
+
+function showpath(req: Request, res: Response, next: NextFunction) {
+  console.log(req.path);
+  next();
+}
+
+app.use(showpath);
 
 app.get("/", (req, res) => {
   return res.send("Hello, Express!");
@@ -88,6 +96,65 @@ app.get("/api/product/:id/reviews/:reviewId", (req: Request, res: Response) => {
   const reviewId = req.params.reviewId;
 
   return res.send(`Acessando a review ${reviewId} para o produto ${productid}`);
+});
+
+// router handler
+
+app.get("/api/user/:id", getUser);
+
+function getUser(req: Request, res: Response) {
+  console.log(`Resgatando o user com o id: ${req.params.id}`);
+
+  return res.send("O usuário foi encontrado");
+}
+
+// middlewares
+
+function checkUser(req: Request, res: Response, next: NextFunction) {
+  if (req.params.id === "1") {
+    console.log("Pode seguir");
+    next();
+  } else {
+    console.log("acesso restrito!");
+  }
+}
+
+app.get("/api/user/:id/access", checkUser, (req: Request, res: Response) => {
+  return res.json({ msg: "Bem-vindo à área de administração!" });
+});
+
+//request e response em generics
+
+app.get(
+  "/api/user/:id/details/:name",
+  (
+    req: Request<{ id: string; name: string }>,
+    res: Response<{ status: boolean }>
+  ) => {
+    if (req.params.id === "1") {
+      console.log(`ID: ${req.params.id}`);
+      console.log(`Name: ${req.params.name}`);
+
+      return res.json({ status: true });
+    } else {
+      console.error(404, "User no found");
+      return res.json({ status: false });
+    }
+  }
+);
+
+// tratando erros
+
+app.get("/api/error", (req: Request, res: Response) => {
+  try {
+    throw new Error("Algo deu errado!");
+  } catch (e: any) {
+    res.status(500).json({
+      status: res.statusCode,
+      error: "Internal server error",
+      msg: e.message
+    });
+  }
 });
 
 app.listen(port, () => {
