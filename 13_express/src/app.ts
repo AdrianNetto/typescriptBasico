@@ -7,7 +7,7 @@ import express, { Request, Response } from "express";
 
 const app = express();
 
-const port: number = 3000;
+const port = 3000;
 
 const url = "http://localhost:3000/";
 
